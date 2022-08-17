@@ -1,4 +1,4 @@
-class Api::AppointmentsController < ApplicationController
+class Api::DoctorsController < ApplicationController
     def index
     # Requirement 4: Create a new endpoint that returns all doctors that do not have an appointment.
       # TODO: return all values
