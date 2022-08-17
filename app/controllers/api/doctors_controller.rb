@@ -1,13 +1,20 @@
 class Api::DoctorsController < ApplicationController
     def index
-    # Requirement 4: Create a new endpoint that returns all doctors that do not have an appointment.
-      # TODO: return all values
-      # TODO: return filtered values
-      head :ok
+      #Requirement 4: create a new endpoint api/doctors
+
+      doctors = Doctor.all
+      render json: doctors.to_json
+
+      available_doctors = Doctor.includes(:appointments).references(:appointments).where('appointments.id IS NULL')
+      # render json: doctorsWithoutAppointments.to_json
+      # head :ok
     end
 
+  
+
+   
+
     def create
-    #Requirement 5: create new appointment POST to api/appointments
-      # TODO:
+
     end
   end
