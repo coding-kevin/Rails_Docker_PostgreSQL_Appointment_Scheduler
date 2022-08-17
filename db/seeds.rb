@@ -35,4 +35,5 @@ doctor = Doctor.create(
     end
 end
 
+p "Seeding completed"
 # p "Created #{doctor.count} doctors, #{patient.count} patients, #{past_appointments.count} past appointments, #{future_appointments} future appointments."
