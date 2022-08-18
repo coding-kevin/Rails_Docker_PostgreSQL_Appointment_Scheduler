@@ -1,5 +1,5 @@
 class Api::AppointmentsController < ApplicationController
-  # before_action :set_appointment, only: [:show, :edit, :update, :destroy]
+  before_action :set_appointment, only: [:show, :edit, :update, :destroy]
 
   # GET /api/appointments
   # GET /api/appointments.json
@@ -13,7 +13,21 @@ class Api::AppointmentsController < ApplicationController
   end
 
   def create
-    @appointment = Appointment.new
+   
+    appointment = Appointment.new(appointment_params)
+
+    # respond_to do |format|
+    #   if @appointment.save
+    #     p "created"
+    #     # render json: appointment.to_json
+    #   else
+    #     p "error"
+    #     # render json: @appointment.errors, status: :unprocessable_entity 
+
+    #   end
+    # end
+    
+    p "created a new appointment: #{appointment.to_json}"
   end
 
 
@@ -26,6 +40,6 @@ private
 
     # Only allow a list of trusted parameters through.
     def appointment_params
-      # params.require(:appointment).permit(:content, :user_id)
+      params.require(:appointment).permit(:doctor_id, :patient_id, :start_time, :duration_in_minutes)
     end
 end
