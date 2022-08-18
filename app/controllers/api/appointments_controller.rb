@@ -9,16 +9,21 @@ class Api::AppointmentsController < ApplicationController
     # TODO: Requirement 3: allow the api/appointments endpoint to return filtered
 
     
+   
+      if params[:past] == "1"
+        appointments = Appointment.where("start_time < ?", DateTime.now)
+      elsif params[:past] == "0"
+        appointments = Appointment.where("start_time > ?", DateTime.now)
+      end
+      if params.has_key?(:length) && params.has_key?(:page)
+        appointments = Appointment.all.limit(params[:length]).offset(params[:page])
+      end
 
-    if(params.has_key?(:length) && params.has_key?(:page))
-      appointments = Appointment.all.limit(params[:length]).offset(params[:page])
-    elsif(params.has_key?(:past) && params[:past] == "1")
-      appointments = Appointment.where("start_time < ?", DateTime.now)
-    elsif(params.has_key?(:past) && params[:past] == "0")
-      appointments = Appointment.where("start_time > ?", DateTime.now)
-    else 
-      appointments = Appointment.all    
-    end
+      if !params
+        appointments = Appointment.all
+      end
+       
+
     render json: appointments.to_json
     # head :ok
   end

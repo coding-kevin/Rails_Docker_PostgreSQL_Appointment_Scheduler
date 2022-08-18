@@ -1,6 +1,6 @@
 require 'faker'
 
-stopwatch_start = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+timer_start = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 
 #TODO: Remove this and make new rake file
 Appointment.destroy_all
@@ -9,12 +9,12 @@ Doctor.destroy_all
 
 10.times do
     doctor = Doctor.create(
-        name: Faker::Name.name
+        name: Faker::Name.unique.name
     )
-    for patient_key in 0..9
+    10.times do |patient_key|
         patient = Patient.create(
             doctor_id: doctor.id,
-            name: Faker::Name.name
+            name: Faker::Name.unique.name
         )
         # Only needs to be generated once per patient / avoids patient conflicts
         appointment_hour = (patient_key + 8).to_s
@@ -41,9 +41,9 @@ Doctor.destroy_all
     end
 end
 
-stopwatch_end = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+timer_end = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 
-elapsed_time = stopwatch_end - stopwatch_start
+elapsed_time = timer_end - timer_start
 
 
-p "Seed successful: Created #{Doctor.count} doctors, #{Patient.count} patients, and #{Appointment.count} appointments. Elapsed time: #{elapsed_time.round()} seconds."
+p "Seed successful: Created #{Doctor.count} doctors, #{Patient.count} patients, and #{Appointment.count} appointments. (#{elapsed_time.round()}s.)"
