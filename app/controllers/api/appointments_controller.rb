@@ -16,7 +16,7 @@ class Api::AppointmentsController < ApplicationController
         appointments = Appointment.where("start_time > ?", DateTime.now)
       end
       if params.has_key?(:length) && params.has_key?(:page)
-        appointments = Appointment.all.limit(params[:length]).offset(params[:page])
+        appointments = Appointment.all.limit(params[:length]).offset(params[:page].to_i * params[:length].to_i)
       end
 
       if !params
