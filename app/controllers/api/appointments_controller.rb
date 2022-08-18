@@ -1,16 +1,32 @@
 class Api::AppointmentsController < ApplicationController
-  before_action :set_appointment, only: [:show, :edit, :update, :destroy]
+  # before_action :set_appointment, only: [:show, :edit, :update, :destroy]
 
   # GET /api/appointments
   # GET /api/appointments.json
   def index
     # TODO: Requirement 2: api/appointments endpoint
+        # >>>> Out of spec
     # TODO: Requirement 3: allow the api/appointments endpoint to return filtered
-    appointments = Appointment.all  
-    render json: appointments.to_json
 
+    
+
+    if(params.has_key?(:length) && params.has_key?(:page))
+      appointments = Appointment.all.limit(params[:length]).offset(params[:page])
+    elsif(params.has_key?(:past) && params[:past] == "1")
+      appointments = Appointment.where("start_time < ?", DateTime.now)
+    elsif(params.has_key?(:past) && params[:past] == "0")
+      appointments = Appointment.where("start_time > ?", DateTime.now)
+    else 
+      appointments = Appointment.all    
+    end
+    render json: appointments.to_json
     # head :ok
   end
+
+  def show
+    render html: params[:id]
+  end
+
 
   def create
    

@@ -28,7 +28,7 @@ Doctor.destroy_all
             )   
         end
         5.times do
-            appointment_date = Faker::Date.unique.backward(days: 365).strftime("%Y%m%d")
+            appointment_date = Faker::Date.unique.forward(days: 365).strftime("%Y%m%d")
             future_appointment = Appointment.create(
                 patient_id: patient.id,
                 doctor_id: patient.doctor_id,
@@ -46,4 +46,4 @@ stopwatch_end = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 elapsed_time = stopwatch_end - stopwatch_start
 
 
-p "Seed successful: Created #{Doctor.count} doctors, #{Patient.count} patients, and #{Appointment.count} appointments. Elapsed time: #{elapsed_time.round()} seconds)"
+p "Seed successful: Created #{Doctor.count} doctors, #{Patient.count} patients, and #{Appointment.count} appointments. Elapsed time: #{elapsed_time.round()} seconds."
