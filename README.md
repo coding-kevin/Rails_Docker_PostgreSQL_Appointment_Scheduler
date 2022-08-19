@@ -30,6 +30,8 @@ In this way, **Patient 3** of **Doctor 1** always has an appointment time of 10:
 
 The script still has a lot of operations, however it is important to generate data that closely resembles production to reduce the likelihood of bugs. As this is not customer-facing, I felt the tradeoff was worth it.
 
+Tests for the script can be found at **spec/db/seeds_spec.rb**
+
 ## Requirement 2
 
 I first used scaffolding to create this endpoint. However, I felt this created a lot of code that I wasn't going to need. I used the scaffolded endpoint as a guide to create the parts I needed manually.
