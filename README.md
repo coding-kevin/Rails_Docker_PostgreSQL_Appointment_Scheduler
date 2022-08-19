@@ -28,7 +28,7 @@ To prevent overlapping appointments, I used the `patient_index` variable as that
 
 In this way, **Patient 3** of **Doctor 1** always has an appointment time of 10:00 AM, because their `patient_index` is 2, and eight hours are added. **Patient 4** of the same doctor will have an appointment at 11:00 AM, and so on.
 
-The script is still very complex, however it is important to generate data that more-closely resembles production to reduce the likelihood of bugs. As this is not customer-facing, I felt the tradeoff was worth it.
+The script is still very complex, however it is important to generate data that closely resembles production to reduce the likelihood of bugs. As this is not customer-facing, I felt the tradeoff was worth it.
 
 ## Requirement 2
 
