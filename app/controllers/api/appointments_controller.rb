@@ -1,16 +1,7 @@
 class Api::AppointmentsController < ApplicationController
-  # before_action :set_appointment, only: [:show, :edit, :update, :destroy]
-
   # GET /api/appointments
   # GET /api/appointments.json
-  def index
-    # TODO: Requirement 2: api/appointments endpoint
-        # >>>> Out of spec
-    # TODO: Requirement 3: allow the api/appointments endpoint to return filtered
-
-    
-    
-    # if params
+  def index  
       if params.has_key?(:length) && params.has_key?(:page) && params.has_key?(:past)
         if params[:past] == "1"
           appointments = Appointment.all.limit(params[:length]).where("start_time < ?", DateTime.now).offset(params[:page].to_i * params[:length].to_i)
@@ -25,12 +16,10 @@ class Api::AppointmentsController < ApplicationController
         appointments = Appointment.where("start_time > ?", DateTime.now)
       else
         appointments = Appointment.all
-      end
-        
-       
+      end  
 
-    render json: appointments.to_json
-    # head :ok
+    render json: appointments.to_json(only: [:id, :created_at, :start_time, :duration_in_minutes], include: [patient: {only: [:name]}, doctor: {only: [:name, :id]}])
+    
   end
 
   def show
