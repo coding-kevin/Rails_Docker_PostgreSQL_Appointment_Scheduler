@@ -17,7 +17,7 @@ class Api::AppointmentsController < ApplicationController
         appointments = Appointment.all
       end  
 
-    render json: appointments.to_json(only: [:id, :created_at, :start_time, :duration_in_minutes], include: [patient: {only: [:name, :id]}, doctor: {only: [:name, :id]}])
+    render json: appointments.to_json(only: [:id, :created_at, :start_time, :duration_in_minutes], include: [patient: {only: [:name]}, doctor: {only: [:name, :id]}])
     
   end
 
