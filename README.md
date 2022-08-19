@@ -100,4 +100,4 @@ I created an `available_doctors` variable and assigned it to all doctors who hav
 
 ## Requirement 5
 
-This was created the same was as **Requirement 2**, by using scaffolded endpoints as a guide to how routing and endpoints work in Rails.
+This was created in the same way as **Requirement 2**, by using scaffolded endpoints as a guide to how routing and endpoints work in Rails.
