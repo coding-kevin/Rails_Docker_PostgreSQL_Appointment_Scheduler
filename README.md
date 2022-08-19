@@ -10,6 +10,30 @@ Run `make bash` or use Docker's terminal feature to enter the app's container, a
 
 JSON data can then be viewed at **localhost:3000/api/[appointments or doctors]**.
 
+To test with Postman:
+
+**localhost:3000/api/appointments**
+
+`GET` returns appointments in this format:
+
+```json
+[
+    {
+        "id": 48112,
+        "created_at": "2022-08-19T18:40:20.555Z",
+        "start_time": "2022-06-07T08:00:00.000Z",
+        "duration_in_minutes": 50,
+        "patient": {
+            "name": "Francis Upton"
+        },
+        "doctor": {
+            "id": 467,
+            "name": "Dessie Reinger"
+        }
+    }, ...
+]
+```
+
 ### Requirements
 
 1. Create 10 doctors, who each have 10 patients, who each have 10 appointments. Names must be unique.

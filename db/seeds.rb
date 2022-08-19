@@ -40,6 +40,12 @@ Doctor.destroy_all
     end
 end
 
+# Optional: Create one available doctor to test that particular API.
+# NOTE: This will cause seeds_spec.rb to fail.
+# doctor = Doctor.create(
+#     name: "Available Doctor"
+# )
+
 timer_end = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 
 elapsed_time = timer_end - timer_start
