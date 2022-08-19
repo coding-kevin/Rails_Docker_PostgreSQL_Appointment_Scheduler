@@ -19,18 +19,46 @@ To test with Postman:
 ```json
 [
     {
-        "id": 48112,
-        "created_at": "2022-08-19T18:40:20.555Z",
-        "start_time": "2022-06-07T08:00:00.000Z",
+        "id": 48330,
+        "created_at": "2022-08-19T18:40:22.069Z",
+        "start_time": "2023-05-28T09:00:00.000Z",
         "duration_in_minutes": 50,
         "patient": {
-            "name": "Francis Upton"
+            "name": "Mitch Metz"
         },
         "doctor": {
-            "id": 467,
-            "name": "Dessie Reinger"
+            "id": 469,
+            "name": "Elisabeth Donnelly"
         }
     }, ...
+]
+```
+
+`POST` can be tested with the following. Note that `POST` requires valid doctor and patient ids.
+
+```json
+{
+  "appointment": {
+    "doctor_id": 437,
+    "patient_id": 4249,
+    "start_time": "2021-02-03T12:00:00+00:00Z",
+    "duration_in_minutes": 50
+  }
+}
+```
+
+**localhost:3000/api/doctors**
+
+`GET` returns available doctors in the following format. To add an available doctor, modify the seed script to uncomment that section.
+
+```json
+[
+  {
+    "id": 487,
+    "name": "Available Doctor",
+    "created_at": "2022-08-19T19:04:21.354Z",
+    "updated_at": "2022-08-19T19:04:21.354Z"
+  }
 ]
 ```
 
