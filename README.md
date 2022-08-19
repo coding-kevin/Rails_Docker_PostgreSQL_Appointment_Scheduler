@@ -38,7 +38,7 @@ I wanted to use **Active Model Serializer** to give the response the exact struc
 
 ## Requirement 3
 
-Rails stores query parameters in a hash called params. To check for these params, I can simply use `if ... else` statements for each param. They are nested to prevent conflicts and allow multiple params at once.
+Rails stores query parameters in a hash called params. To check for these params, I can use `if ... else` statements for each param. They are nested to prevent conflicts and allow multiple params at once.
 
 ## Requirement 4
 
