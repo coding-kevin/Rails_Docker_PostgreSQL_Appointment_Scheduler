@@ -12,7 +12,7 @@ JSON data can then be viewed at **localhost:3000/api/[appointments or doctors]**
 
 ### Requirements
 
-1. Create 10 doctors, who have 10 patients, who have 10 appointments. Names must be unique.
+1. Create 10 doctors, who each have 10 patients, who each have 10 appointments. Names must be unique.
 2. Create api/appointments endpoint to return all appointments.
 3. Make appointments endpoint responsive to query params: **?past=1**, **?past=0**, and **?length=5&page=1**.
 4. Create api/doctors endpoint to return all doctors without appointments.
