@@ -10,13 +10,13 @@ Doctor.destroy_all
     doctor = Doctor.create(
         name: Faker::Name.unique.name
     )
-    10.times do |patient_key|
+    10.times do |patient_index|
         patient = Patient.create(
             doctor_id: doctor.id,
             name: Faker::Name.unique.name
         )
         # Only needs to be generated once per patient / avoids patient conflicts
-        appointment_hour = (patient_key + 8).to_s
+        appointment_hour = (patient_index + 8).to_s
         5.times do
             appointment_date = Faker::Date.unique.backward(days: 365).strftime("%Y%m%d")
             past_appointment = Appointment.create(
