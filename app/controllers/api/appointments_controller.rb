@@ -1,6 +1,5 @@
 class Api::AppointmentsController < ApplicationController
   # GET /api/appointments
-  # GET /api/appointments.json
   def index  
       if params.has_key?(:length) && params.has_key?(:page) && params.has_key?(:past)
         if params[:past] == "1"
@@ -18,39 +17,29 @@ class Api::AppointmentsController < ApplicationController
         appointments = Appointment.all
       end  
 
-    render json: appointments.to_json(only: [:id, :created_at, :start_time, :duration_in_minutes], include: [patient: {only: [:name]}, doctor: {only: [:name, :id]}])
+    render json: appointments.to_json(only: [:id, :created_at, :start_time, :duration_in_minutes], include: [patient: {only: [:name, :id]}, doctor: {only: [:name, :id]}])
     
   end
 
   def show
-    render html: params[:id]
   end
 
 
   def create
-   
     appointment = Appointment.new(appointment_params)
-
-    # respond_to do |format|
-    #   if @appointment.save
-    #     p "created"
-    #     # render json: appointment.to_json
-    #   else
-    #     p "error"
-    #     # render json: @appointment.errors, status: :unprocessable_entity 
-
-    #   end
-    # end
-    
-    p "created a new appointment: #{appointment.to_json}"
+    appointment.save
+    if appointment.save
+      render json: appointment
+    else 
+      render :json => appointment.errors,
+      :status => :unprocessable_entity
+    end
   end
-
 
 private
     # Use callbacks to share common setup or constraints between actions.
-
     def set_appointment
-      @appointment = Appointment.find(params[:id])
+      appointment = Appointment.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

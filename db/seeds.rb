@@ -2,7 +2,6 @@ require 'faker'
 
 timer_start = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 
-#TODO: Remove this and make new rake file
 Appointment.destroy_all
 Patient.destroy_all
 Doctor.destroy_all
