@@ -21,10 +21,7 @@ class Api::AppointmentsController < ApplicationController
     
   end
 
-  def show
-  end
-
-
+  # POST /api/appointments
   def create
     appointment = Appointment.new(appointment_params)
     appointment.save
