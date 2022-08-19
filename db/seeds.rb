@@ -40,7 +40,7 @@ Doctor.destroy_all
     end
 end
 
-# Optional: Create one available doctor to test that particular API.
+# Optional: Create one available doctor to test that particular endpoint.
 # NOTE: This will cause seeds_spec.rb to fail.
 # doctor = Doctor.create(
 #     name: "Available Doctor"
