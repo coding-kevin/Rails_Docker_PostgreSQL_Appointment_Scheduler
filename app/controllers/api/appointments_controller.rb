@@ -20,7 +20,7 @@ class Api::AppointmentsController < ApplicationController
     end
 
     render json: appointments.to_json(only: %i[id created_at start_time duration_in_minutes],
-                                      include: [patient: { only: [:name, :id] }, doctor: { only: %i[
+                                      include: [patient: { only: [:name] }, doctor: { only: %i[
                                         name id
                                       ] }])
   end
