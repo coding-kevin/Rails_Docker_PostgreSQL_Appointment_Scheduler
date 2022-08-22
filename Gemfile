@@ -12,6 +12,7 @@ gem "pg"
 gem "puma", "~> 3.11"
 gem "rails", "~> 6.0.3"
 gem "bootsnap", ">= 1.4.2", require: false
+gem "rubocop"
 
 group :development, :test do
   gem "faker"

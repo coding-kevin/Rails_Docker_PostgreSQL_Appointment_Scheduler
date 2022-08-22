@@ -7,48 +7,47 @@ Patient.destroy_all
 Doctor.destroy_all
 
 10.times do
-    doctor = Doctor.create(
-        name: Faker::Name.unique.name
+  doctor = Doctor.create(
+    name: Faker::Name.unique.name
+  )
+  10.times do |patient_index|
+    patient = Patient.create(
+      doctor_id: doctor.id,
+      name: Faker::Name.unique.name
     )
-    10.times do |patient_index|
-        patient = Patient.create(
-            doctor_id: doctor.id,
-            name: Faker::Name.unique.name
-        )
-        # Only needs to be generated once per patient / avoids patient conflicts
-        appointment_hour = (patient_index + 8).to_s
-        5.times do
-            appointment_date = Faker::Date.unique.backward(days: 365).strftime("%Y%m%d")
-            past_appointment = Appointment.create(
-                patient_id: patient.id,
-                doctor_id: patient.doctor_id,
-                duration_in_minutes: 50,
-                start_time: "#{appointment_date}T#{appointment_hour}}"
-            )   
-        end
-        5.times do
-            appointment_date = Faker::Date.unique.forward(days: 365).strftime("%Y%m%d")
-            future_appointment = Appointment.create(
-                patient_id: patient.id,
-                doctor_id: patient.doctor_id,
-                duration_in_minutes: 50,
-                start_time: "#{appointment_date}T#{appointment_hour}}"
-            )
-        end
-        # Reset unique date values for next patient
-        Faker::UniqueGenerator.clear
+    # Only needs to be generated once per patient / avoids patient conflicts
+    appointment_hour = (patient_index + 8).to_s
+    5.times do
+      appointment_date = Faker::Date.unique.backward(days: 365).strftime('%Y%m%d')
+      Appointment.create(
+        patient_id: patient.id,
+        doctor_id: patient.doctor_id,
+        duration_in_minutes: 50,
+        start_time: "#{appointment_date}T#{appointment_hour}}"
+      )
     end
+    5.times do
+      appointment_date = Faker::Date.unique.forward(days: 365).strftime('%Y%m%d')
+      Appointment.create(
+        patient_id: patient.id,
+        doctor_id: patient.doctor_id,
+        duration_in_minutes: 50,
+        start_time: "#{appointment_date}T#{appointment_hour}}"
+      )
+    end
+    # Reset unique date values for next patient
+    Faker::UniqueGenerator.clear
+  end
 end
 
 # Optional: Create one available doctor to test that particular endpoint.
 # NOTE: This will cause seeds_spec.rb to fail.
-# doctor = Doctor.create(
-#     name: "Available Doctor"
-# )
+Doctor.create(
+    name: "Available Doctor"
+)
 
 timer_end = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 
 elapsed_time = timer_end - timer_start
 
-
-p "Seed successful: Created #{Doctor.count} doctors, #{Patient.count} patients, and #{Appointment.count} appointments. (#{elapsed_time.round()}s.)"
+p "Seed successful: Created #{Doctor.count} doctors, #{Patient.count} patients, and #{Appointment.count} appointments. (#{elapsed_time.round}s.)"
