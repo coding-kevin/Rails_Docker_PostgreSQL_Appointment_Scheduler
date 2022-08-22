@@ -23,7 +23,7 @@ Doctor.destroy_all
         patient_id: patient.id,
         doctor_id: patient.doctor_id,
         duration_in_minutes: 50,
-        start_time: "#{appointment_date}T#{appointment_hour}}"
+        start_time: "#{appointment_date}T#{appointment_hour}"
       )
     end
     5.times do
@@ -32,7 +32,7 @@ Doctor.destroy_all
         patient_id: patient.id,
         doctor_id: patient.doctor_id,
         duration_in_minutes: 50,
-        start_time: "#{appointment_date}T#{appointment_hour}}"
+        start_time: "#{appointment_date}T#{appointment_hour}"
       )
     end
     # Reset unique date values for next patient
