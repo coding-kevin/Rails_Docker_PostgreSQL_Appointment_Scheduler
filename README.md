@@ -1,8 +1,20 @@
-# Takehome Assignment
+# Rails, Docker, PostgreSQL Appointment Scheduler (Backend Only)
 
 ## Overview
 
+This is a backend framework for a doctor's office appointment scheduler. I created it with the following goals in mind:
+
+
+1. Seed database by creating 10 doctors, who each have 10 patients, who each have 10 appointments. Names must be unique.
+2. Create api/appointments endpoint to return all appointments.
+3. Make appointments endpoint responsive to query params: **?past=1**, **?past=0**, and **?length=5&page=1**.
+4. Create api/doctors endpoint to return all doctors without appointments.
+5. Add POST to api/appointments
+
+
 ### Quickstart instructions
+
+This repo requires the use of Docker.
 
 Download repo, `cd` into main directory, then run `make build`, `make dbcreate`, and finally, `make up` to launch app in Docker.
 
@@ -61,14 +73,6 @@ To test with Postman:
   }
 ]
 ```
-
-### Requirements
-
-1. Create 10 doctors, who each have 10 patients, who each have 10 appointments. Names must be unique.
-2. Create api/appointments endpoint to return all appointments.
-3. Make appointments endpoint responsive to query params: **?past=1**, **?past=0**, and **?length=5&page=1**.
-4. Create api/doctors endpoint to return all doctors without appointments.
-5. Add POST to api/appointments
 
 ## Requirement 1
 
